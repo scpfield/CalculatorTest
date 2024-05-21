@@ -1,0 +1,77 @@
+#
+# This file contains a list of static test cases for Google's calculator,
+# which are also given to the Python interpreter to compare results with.
+#
+# Any line in this file that is not blank or a comment will be parsed for input.
+#
+# The following ASCII and UTF-8 symbols can be used when writing the test cases.
+#
+#   plus:       +
+#   minus:      - −
+#   multiply:   * x × 
+#   divide:     / ÷
+#   decimal:    .
+#   parens:     ( )
+#
+#
+# Note: Google's calculator does not handle negative numbers for user input very
+# well and requires using parenthesis in most cases to work properly.
+#
+# You can also write invalid test cases here.  Google's calculator uses the string
+# "Error" as the result when attempting to calculate invalid user input.  Python 
+# throws exceptions if given invalid input to calculate.
+#
+# Here are sample test cases (not an exhaustive list).
+#
+
+# pi
+22 / 7
+
+# max 32-bit value + 1
+4294967296 + 1
+
+# multiply 2 32-bit max values
+4294967296 * 4294967296
+
+# max 64-bit number + 1
+18446744073709551616 + 1
+
+# multiply 2 64-bit max values
+18446744073709551616 * 18446744073709551616
+
+# max 128-bit number + 1
+340282366920938463463374607431768211456 + 1
+
+# multiply 2 128-bit max values
+340282366920938463463374607431768211456 * 340282366920938463463374607431768211456
+
+# example of parenthesis usage
+(1 + 1) / (-5 + 12) * (-3)
+
+# more parenthesis, needed for negative numbers or else google fails
+(-1) - (-1) - (-1) - (-1) - (-1) - (-1) - (-1) - (-1)
+
+# example of google failure handling negative number input without parenthesis
+# the test client treats it as a failed test
+-1 - -1
+
+# this triggers a case where Google returns the result as an integer: "4"
+# however, Python returns it as a float: "4.0"
+# by default we don't consider this to be a test failure unless Strict Mode is enabled (--strict)
+4.0 / 1
+
+# invalid input, both Google and Python return error, so it is not a test failure
+89 / ((()))
+
+# divide by zero case. Google returns "Infinity", Python returns "Error" (ZeroDivisionError),
+# so the test client considers it a failed test due to the discrepancy
+1 / 0
+
+# This is a grey area.  Python throws a SyntaxError when attempting to calculate it, 
+# but Google's calculator simply keeps it on the display, regardless of how many times 
+# you click "Equals" button to calculate it.  Test client treats it as a failed test.
+( 4 + )
+
+# Add more for fun!
+(-57797.44831263) - 27875 / ((-17213) * (53838 - (-18890) + 38494.5868 - (-49168.80867312)) + 64779) / ((-17424.033) / 14717.3 * (64845.75636492 * 49095.942663) * 3916) / 42764.6924 + (34970.70297 / ((-8473.5)))
+
